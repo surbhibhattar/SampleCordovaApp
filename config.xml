@@ -17,6 +17,5 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
-    <plugin name="plugin-watson-vr" spec="https://github.com/surbhibhattar/plugin-watson-vr" />
     <engine name="android" spec="^7.1.1" />
 </widget>
