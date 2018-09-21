@@ -60,7 +60,7 @@ var app = {
 		//navigator.camera.cleanup();
 		WatsonVR.classify('version', 'apikey', imageData ,function(success){
 			console.log(success);
-			document.getElementById("result").innerHTML = JSON.stringify(JSON.parse(success).images[0].classifiers[0].classes, null, 4);
+			document.getElementById("result").innerHTML = app.fetchResults(JSON.parse(success));
 			showResult(success);
 		}, function(error){
 			console.log('error: ', error);
@@ -78,6 +78,17 @@ var app = {
 	},
 	imgFail: function ( msg ) {
 		console.log("Failed to get image: " +  msg);
+	},
+	fetchResults: function(result){
+		let classes = result.images[0].classifiers[0].classes;
+		let array = [];
+		for(let i=0;i<classes.length;i++){
+			if(classes[i] !== ',') {
+				let div = '<div>CLASS: ' + classes[i].class + '</div>' +'<div>SCORE: ' + classes[i].score + '</div>';
+				array.push(div);
+			}
+		}
+		return array;
 	}
     
 };

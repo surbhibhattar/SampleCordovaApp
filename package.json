@@ -10,16 +10,16 @@
     "author": "Apache Cordova Team",
     "license": "Apache-2.0",
     "dependencies": {
-        "cordova-android": "^7.0.0",
+        "cordova-android": "^7.1.1",
         "cordova-plugin-camera": "^4.0.3",
         "cordova-plugin-whitelist": "^1.3.3",
-        "plugin-watson-vr": "file:../../Documents/Projects/plugin-watson-vr"
+        "plugin-watson-vr": "git+https://github.com/surbhibhattar/plugin-watson-vr.git"
     },
     "cordova": {
         "plugins": {
-            "cordova-plugin-whitelist": {},
+            "cordova-plugin-camera": {},
             "plugin-watson-vr": {},
-            "cordova-plugin-camera": {}
+            "cordova-plugin-whitelist": {}
         },
         "platforms": [
             "android"
