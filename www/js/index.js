@@ -52,11 +52,27 @@ var app = {
     pickFromGallery: function ( ) {
 		document.getElementById("image").src = '';
 		document.getElementById("result").innerHTML = '';
-		app.imgOptions = {quality : 75,
-				destinationType: Camera.DestinationType.FILE_URI,
-  				sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
-			   };
-        navigator.camera.getPicture( app.imgSuccess, app.imgFail, app.imgOptions );
+		// app.imgOptions = {quality : 75,
+		// 		destinationType: Camera.DestinationType.FILE_URI,
+  		// 		sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+		// 	   };
+		// navigator.camera.getPicture( app.imgSuccess, app.imgFail, app.imgOptions );
+		window.plugins.imagePicker.getPictures(
+			function(results) {
+					console.log('Image URI: ' + results[0]);
+					document.getElementById("image").src = results[0];
+					WatsonVR.classify('version', 'apikey', results[0] ,function(success){
+						console.log(success);
+						document.getElementById("result").innerHTML = app.fetchResults(JSON.parse(success));
+					}, function(error){
+						console.log('error: ', error);
+						alert('ERROR: '+error);
+					})
+			}, function (error) {
+				console.log('Error: ' + error);
+				alert('ERROR: '+error);
+			}
+		);
     },
 	imgSuccess: function ( imageData ) {
 		
