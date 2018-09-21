@@ -44,16 +44,18 @@ var app = {
 				destinationType: Camera.DestinationType.FILE_URI,
 				saveToPhotoAlbum : true
 			   };
-        navigator.camera.getPicture( app.imgSuccess, app.imgFail, app.imgOptions );
+		navigator.camera.getPicture( app.imgSuccess, app.imgFail, app.imgOptions );
+		
     },
     pickFromGallery: function ( ) {
 		app.imgOptions = {quality : 75,
 				destinationType: Camera.DestinationType.FILE_URI,
-  				sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+  				sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
 			   };
         navigator.camera.getPicture( app.imgSuccess, app.imgFail, app.imgOptions );
     },
 	imgSuccess: function ( imageData ) {
+		
 		//app.image.src = "data:image/jpeg;base64," + imageData;
 		document.getElementById("image").src = imageData;
 		//clear memory in app
@@ -61,7 +63,6 @@ var app = {
 		WatsonVR.classify('version', 'apikey', imageData ,function(success){
 			console.log(success);
 			document.getElementById("result").innerHTML = app.fetchResults(JSON.parse(success));
-			showResult(success);
 		}, function(error){
 			console.log('error: ', error);
 			alert('ERROR: '+error);
@@ -83,8 +84,8 @@ var app = {
 		let classes = result.images[0].classifiers[0].classes;
 		let array = [];
 		for(let i=0;i<classes.length;i++){
-			if(classes[i] !== ',') {
-				let div = '<div>CLASS: ' + classes[i].class + '</div>' +'<div>SCORE: ' + classes[i].score + '</div>';
+			if(classes[i].score >= 0.6) {
+				let div = '<div>' + classes[i].class + ' ' + ((classes[i].score)*100).toFixed(1) + '%</div>';
 				array.push(div);
 			}
 		}
