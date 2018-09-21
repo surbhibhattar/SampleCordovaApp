@@ -40,6 +40,8 @@ var app = {
     },
     
     callCamera: function ( ) {
+		document.getElementById("image").src = '';
+		document.getElementById("result").innerHTML = '';
 		app.imgOptions = {quality : 75,
 				destinationType: Camera.DestinationType.FILE_URI,
 				saveToPhotoAlbum : true
@@ -48,6 +50,8 @@ var app = {
 		
     },
     pickFromGallery: function ( ) {
+		document.getElementById("image").src = '';
+		document.getElementById("result").innerHTML = '';
 		app.imgOptions = {quality : 75,
 				destinationType: Camera.DestinationType.FILE_URI,
   				sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
