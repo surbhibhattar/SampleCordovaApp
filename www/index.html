@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 
 <html>
-   
+   <head>
+        <link href="css/all.css" rel="stylesheet">
+        <link href="css/index.css" rel="stylesheet"> 
+</head>
     <body>
-        <div>
-            
-        </div>
-        <div class="app">
-            <h1>VR App</h1>
-            <p>
-                <button id="btn-gallery">Choose picture</button>
-                <button id="btn-camera">Choose camera</button>
-            </p>
-            <img src="" alt="" id="image" style="width: 100%"/>
+        <div id="app">
+            <div id="row1">
+                <img src="" alt="" id="image" style="width: 100%; height:100%"/>
+            </div>
+            <div id="row2">
+                <div id="footer" >
+                        <button id="btn-gallery"><i class="fa fa-file-image fa-3x" aria-hidden="true"></i>
+                        </button>
+                        <button id="btn-camera"><i class="fa fa-camera-retro fa-3x"></i>
+                        </button>
+                </div>
+            </div>          
             <div id="result"></div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        <script src="js/load-image.all.min.js"></script>
     </body>
 </html>
